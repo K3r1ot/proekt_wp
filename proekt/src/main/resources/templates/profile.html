@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div th:replace="~{navbar.html :: navbar}"></div>
+
+<h1>Добредојде, <span th:text="${user.username}"></span></h1>
+<h2>Вашата цел</h2>
+<ul>
+  <li th:each="goal : ${goals}">
+    <p>Моментална тежина: <span th:text="${goal.currentWeight}"></span> kg</p>
+    <p>Посакувана тежина: <span th:text="${goal.targetWeight}"></span> kg</p>
+    <p>Дневни калории: <span th:text="${goal.dailyCalories}"></span> kcal</p>
+    <p>Дневни протеини: <span th:text="${goal.dailyProtein}"></span> g</p>
+
+
+
+    <!-- Delete Button -->
+    <form th:action="@{/delete-goal}" method="post" style="display:inline;">
+      <input type="hidden" name="goalId" th:value="${goal.id}"/>
+      <button type="submit" onclick="return confirm('Дали сте сигурни дека сакате да ја избришете целта?');">Избриши</button>
+    </form>
+  </li>
+</ul>
+</body>
+</html>

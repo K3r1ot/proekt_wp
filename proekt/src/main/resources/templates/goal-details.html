@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Goal Details</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div th:replace="~{navbar.html :: navbar}"></div>
+
+<h1>Детали за целта</h1>
+<p>Моментална Тежина: <span th:text="${goal.currentWeight}">0</span> kg</p>
+<p>Посакувана Тежина: <span th:text="${goal.targetWeight}">0</span> kg</p>
+<p>Потребен дневен внес на калории: <span th:text="${goal.dailyCalories}">0</span> kcal</p>
+<p>Потребен дневен внес на протеини: <span th:text="${goal.dailyProtein}">0</span> g</p>
+
+<h2>Денешен напредок</h2>
+<p>Внесени калории: <span th:text="${totalCalories}">0</span> kcal</p>
+<p>Внесени протеини: <span th:text="${totalProtein}">0</span> g</p>
+
+<h2>Food Eaten Today</h2>
+<ul>
+  <li th:each="entry : ${todayFoodEntries}">
+    <span th:text="${entry.food.name}">Оброк</span> -
+    <span th:text="${entry.quantityInGrams}">0</span> g,
+    <span th:text="${entry.getTotalCalories()}">0</span> kcal,
+    <span th:text="${entry.getTotalProtein()}">0</span> g protein
+  </li>
+</ul>
+
+<a href="/set-goal">Намести нова цел</a>
+</body>
+</html>
