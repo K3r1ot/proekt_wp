@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Goal Details</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div th:replace="~{navbar.html :: navbar}"></div>
+
+<div class="goal-details">
+  <h1>Детали за целта</h1>
+  <p>Моментална Тежина: <span th:text="${goal.currentWeight}">0</span> kg</p>
+  <p>Посакувана Тежина: <span th:text="${goal.targetWeight}">0</span> kg</p>
+  <p>Потребен дневен внес на калории: <span th:text="${goal.dailyCalories}">0</span> kcal</p>
+  <p>Потребен дневен внес на протеини: <span th:text="${goal.dailyProtein}">0</span> g</p>
+</div>
+
+<div class="progress-section">
+  <h2>Денешен напредок</h2>
+  <p>Внесени калории: <span th:text="${#numbers.formatDecimal(totalCalories, 1, 2)}">0</span> kcal</p>
+  <p>Внесени протеини: <span th:text="${#numbers.formatDecimal(totalProtein, 1, 2)}">0</span> g</p>
+</div>
+
+<div class="food-list-section">
+  <h2>Храна внесена денес</h2>
+  <ul class="food-entry-list">
+    <li th:each="entry : ${todayFoodEntries}">
+      <span th:text="${entry.food.name}">Оброк</span> -
+      <span th:text="${entry.quantityInGrams}">0</span> g,
+      <span th:text="${#numbers.formatDecimal(entry.getTotalCalories(), 1, 2)}">0</span> kcal,
+      <span th:text="${#numbers.formatDecimal(entry.getTotalProtein(), 1, 2)}">0</span> g protein
+    </li>
+  </ul>
+</div>
+
+<div class="button-container">
+  <a href="/set-goal" class="btn">Намести нова цел</a>
+</div>
+
+
+</body>
+</html>

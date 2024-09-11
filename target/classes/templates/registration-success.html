@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Registration Successful</title>
+  <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<h1>Registration Successful!</h1>
+<p>Welcome, <span th:text="${user.username}">User</span>!</p>
+<div class="button-container">
+<a href="/login">Go to Login</a>
+</div>
+</body>
+</html>
